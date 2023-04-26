@@ -1,59 +1,77 @@
-import React from 'react'
+import React from "react";
 
-export default function Pokeinfo() {
+const PokeInfo = ({ data }) => {
+  console.log(data);
   return (
-    <div> <div className="pokemonTitle">
-      <img
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg`}
-        alt=""
-      />
-      <h2># 1</h2>
-      <h1>Pikachu</h1>
-    </div>
-      <div className="pokemonInfo">
-        <div className="pokemonType">
-          <h3>Types: </h3>
-
-          <h4>Electrico</h4>
-
-        </div>
-        <div className="pokemonWeight">
-          <h3>Weight</h3>
-          <h4>20 kg</h4>
-        </div>
-        <div className="pokemonSprites">
-          <h3>Sprites</h3>
-
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png`}
-            alt=""
-
-          />
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/25.png`}
-            alt=""
-
-          />
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png`}
-            alt=""
-
-          />
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png`}
-            alt=""
-
-          />
-        </div>
-        <div>
-          <h3>Moves: </h3>
-          <div className="pokeMoves">
-
-            <p className="infoMoves" >
-              / atacktrueno
-            </p>
+    <>
+      {!data ? (
+        ""
+      ) : (
+        <>
+          <div className="pokemonTitle">
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
+              alt=""
+            />
+            <h2># {data.id}</h2>
+            <h1>{data.name}</h1>
           </div>
-        </div>
-      </div></div>
-  )
-}
+          <div className="pokemonInfo">
+            <div className="pokemonType">
+              <h3>Types: </h3>
+              {data.types.map((poke) => {
+                return (
+                  <>
+                    <h4>{poke.type.name}</h4>
+                  </>
+                );
+              })}
+            </div>
+            <div className="pokemonWeight">
+              <h3>Weight</h3>
+              <h4>{data.weight}</h4>
+            </div>
+            <div className="pokemonSprites">
+              <h3>Sprites</h3>
+
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${data.id}.png`}
+                alt=""
+                srcset=""
+              />
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${data.id}.png`}
+                alt=""
+                srcset=""
+              />
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`}
+                alt=""
+                srcset=""
+              />
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${data.id}.png`}
+                alt=""
+                srcset=""
+              />
+            </div>
+            <div>
+              <h3>Moves: </h3>
+              <div className="pokeMoves">
+                {data.moves.map((poke) => {
+                  return (
+                    <p className="infoMoves" >
+                      / {poke.move.name}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
+  );
+};
+
+export default PokeInfo;

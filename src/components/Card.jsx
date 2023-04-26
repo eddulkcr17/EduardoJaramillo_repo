@@ -1,11 +1,26 @@
 import React from 'react'
 
-export default function Card() {
+const Card = ({ pokemon, loading, infoPokemon }) => {
+  console.log(pokemon)
   return (
-    <div className='Card'>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="" />
-      <h2># 1</h2>
-      <h3>Pikachu</h3>
-    </div>
+    <>
+      {
+        loading ? <h1>Loading...</h1> :
+          pokemon.map((item) => {
+            return (
+              <>
+                <div className="card" key={item.id} onClick={() => infoPokemon(item)}>
+                  <img src={item.sprites.front_default} alt="" />
+                  <h2># {item.id}</h2>
+                  <h3>{item.name}</h3>
+                </div>
+              </>
+            )
+          })
+      }
+
+    </>
   )
 }
+
+export default Card
