@@ -4,6 +4,9 @@
   margin: 0;
   font-family: "Kanit", sans-serif;
 }
+body {
+  background-color: #65e1e6;
+}
 
 .container {
   width: 90%;
@@ -15,4 +18,22 @@
 .left-content,
 .right-content {
   flex-basis: 50%;
+}
+
+.left-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
+  grid-gap: 2rem;
+}
+
+.card {
+  background: #616ae4;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  margin: 20px 10px 2px 5px;
+  width: calc(80% - 40px);
+  padding: 20px;
+  text-align: center;
+  color: white;
+  float: left;
 }
