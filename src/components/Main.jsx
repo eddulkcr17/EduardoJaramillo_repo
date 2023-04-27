@@ -3,7 +3,8 @@ import Card from './Card';
 import PokeInfo from './Pokeinfo';
 import axios from 'axios';
 import Navbar from './Navbar';
-import Search from './Search';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const Main = () => {
   const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,6 +12,7 @@ const Main = () => {
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   const [pokeDex, setPokeDex] = useState();
+  const [busqueda, setBusqueda] = useState("");
   const pokeFun = async () => {
     setLoading(true)
     const res = await axios.get(url);
@@ -29,6 +31,20 @@ const Main = () => {
       })
     })
   }
+
+  const handleChange = e => {
+    setBusqueda(e.target.value);
+    filtrar(e.target.value);
+  }
+  const filtrar = (terminoBusqueda) => {
+    var resultadosBusqueda = pokeData.filter((elemento) => {
+      if (elemento.name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+        return elemento;
+      }
+    });
+    setPokeData(resultadosBusqueda);
+  }
+
   useEffect(() => {
     pokeFun();
   }, [url])
@@ -36,7 +52,19 @@ const Main = () => {
   return (
     <>
       <Navbar />
-      <Search />
+
+      <div className="containerInput">
+        <input
+          className=" btn-search"
+          value={busqueda}
+          placeholder="Búsqueda por Nombre"
+          onChange={handleChange}
+        />
+
+        <button className="btn-search">
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </div>
 
       <div className="container">
         <div className="left-content">
@@ -59,6 +87,7 @@ const Main = () => {
 
           </div>
         </div>
+
         <div className="right-content">
           <PokeInfo data={pokeDex} />
         </div>

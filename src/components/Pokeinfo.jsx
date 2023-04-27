@@ -37,22 +37,22 @@ const PokeInfo = ({ data }) => {
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${data.id}.png`}
                 alt=""
-                srcset=""
+
               />
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${data.id}.png`}
                 alt=""
-                srcset=""
+
               />
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`}
                 alt=""
-                srcset=""
+
               />
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${data.id}.png`}
                 alt=""
-                srcset=""
+
               />
             </div>
             <div>
